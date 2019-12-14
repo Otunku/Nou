@@ -1,0 +1,81 @@
+# Cheenou Her
+# CSP 017
+# Final Project Stage 2
+
+myList = []
+
+startup = input('Welcome! Please enter "1" to start the program: ')
+
+menu = [ "Category", "Item", "Serving Size", "Calories", "Calories from Fat", "Total Fat", "Cholesterol", "Sodium", "Carbohydrates", "Protein", "Sugars", "Quit"]
+
+headings = [ "Category", "Item", "Serving Size", "Calories", "Calories from Fat", "Total Fat", "Cholesterol", "Sodium", "Carbohydrates", "Protein", "Sugars"]
+
+def quit():
+    print('Have a nice day!')
+
+def printMenu():
+    # Prints the printMenu() function
+    print('Select from the following options below:')
+
+    for i, item in enumerate(menu, 1):
+        print(f'    {i})', item)
+
+def processInput(userValue):
+    #prints the numerical value and the proper item from the heading
+    print("You chose", f'{i})', headings [i-1])
+
+    #Sorts the data from biggest value to smallest
+
+    correct_value = userValue + 4 if userValue >= 6 else userValue
+
+    sortData = sorted(myList, key = lambda r: int(r[correct_value]) if correct_value > 2 else r[correct_value], reverse = True)
+
+    print('Top {} items based on {}'.format(5, headings[userValue]))
+    
+    for count in range(5):
+        print("\t{}| '{}' {}".format(count + 1, sortData[count][1], sortData[count][correct_value]))
+
+    
+# Main Codes
+
+# Reads the csv file
+file_csv = open("Mac_menu.csv", "r")
+file_csv.readline()
+for line in file_csv:
+    line = line.rstrip('\n')
+    line = line.replace(' " ', '')
+    newlist = line.split(',')
+    newtuple = tuple(newlist)
+    myList.append(newtuple)
+print(myList)
+
+file_csv.close()
+
+# Startup
+while startup == '1':
+
+    
+    # Function Call
+    result = printMenu()
+
+    # Try and Except statements
+    try:
+        myInput = int(input('Please enter a value '))
+        print('The user entered', myInput)
+
+        # Choosing your Number and Receiving your results
+        i = int(myInput)
+        if 0 < i < 12:
+
+            #Passing the argument
+            processInput(myInput)
+
+            break
+        elif i == 12:
+            quit()
+            break
+        elif i > 12:
+            print('Please choose a number between 1 and 12')
+        
+    except ValueError:
+        print('ERROR: you did not enter a number')
