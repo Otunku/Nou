@@ -24,10 +24,10 @@ def processInput(userValue):
     #prints the numerical value and the proper item from the heading
     print("You chose", f'{i})', headings [i-1])
 
-    #Sorts the data from biggest value to smallest
-
+    # Retrieves the correct value
     correct_value = userValue + 4 if userValue >= 6 else userValue
 
+    #Sorts the data from biggest value to smallest
     sortData = sorted(myList, key = lambda r: int(r[correct_value]) if correct_value > 2 else r[correct_value], reverse = True)
 
     print('Top {} items based on {}'.format(5, headings[userValue]))
@@ -70,7 +70,6 @@ while startup == '1':
             #Passing the argument
             processInput(myInput)
 
-            break
         elif i == 12:
             quit()
             break
